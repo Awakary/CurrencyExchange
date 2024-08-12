@@ -3,7 +3,7 @@ from controller import HttpGetHandler
 
 
 def run(server_class=HTTPServer, handler_class=HttpGetHandler):
-    server_address = ('', 8000)
+    server_address = ('', 8002)
     httpd = server_class(server_address, handler_class)
     try:
         httpd.serve_forever()
