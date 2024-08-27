@@ -1,7 +1,11 @@
-from dto import ExchangeRateDtoList, CurrencyDtoList
+from utils.dto import (CurrencyDtoCreate, CurrencyDtoList,
+                       ExchangeRateDtoCreate, ExchangeRateDtoList)
 
 
 def converter_currency_for_rate(dto_list_currencies: list, rate: dict) -> dict:
+
+    """Конвертер валют в словарь для отображения курса"""
+
     currencies_dict = {'baseCurrency': '', 'targetCurrency': ''}
     for j in dto_list_currencies:
         if j['id'] == rate['baseCurrency']:
@@ -11,7 +15,10 @@ def converter_currency_for_rate(dto_list_currencies: list, rate: dict) -> dict:
     return currencies_dict
 
 
-def converter_rates_to_dto(result):
+def converter_rates_to_dto(result) -> list:
+
+    """Конвертер курса в DTO"""
+
     dto_list_currencies = []
     dto_list_rates = []
     for line in result:
@@ -24,3 +31,12 @@ def converter_rates_to_dto(result):
         rate['baseCurrency'] = currencies_dict['baseCurrency']
         rate['targetCurrency'] = currencies_dict['targetCurrency']
     return dto_list_rates
+
+
+def converter_to_create_dto(params):
+
+    """Конвертер переданных параметров в DTO для создания валюты/курса"""
+
+    if 'code' in params:
+        return CurrencyDtoCreate(**{key: value[0] for key, value in params.items()})
+    return ExchangeRateDtoCreate(**{key: value[0] for key, value in params.items()})
