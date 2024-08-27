@@ -1,7 +1,7 @@
 import sqlite3
 from sqlite3 import Cursor
 
-from settings.settings import database
+from settings import database
 from utils.dto import CurrencyDtoCreate, CurrencyDtoList, ExchangeRateDtoCreate
 from utils.error import Error
 from utils.utils import converter_rates_to_dto

@@ -1,6 +1,9 @@
+import os
 import sqlite3
+import sys
 
-from settings.settings import database
+sys.path.append(os.getcwd())
+from settings import database
 
 connection = sqlite3.connect(database)
 
@@ -38,4 +41,4 @@ VALUES ((SELECT id FROM Currencies WHERE code = 'AUD'),
 0.019)
 """)
 connection.close()
-print('create db')
+print('База создана')
